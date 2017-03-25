@@ -12,7 +12,7 @@ This API is a swift implementation to obtain its data.
   s.license       = { :type => 'MIT', :file => 'LICENSE' }
   s.author        = { "Jose Salavert" => "salavert@gmail.com" }
   s.platform      = :ios, "10.0"
-  s.source        = { :path => "https://github.com/salavert/vainglory-api", :tag => s.version.to_s }
+  s.source        = { :git => "https://github.com/salavert/vainglory-api.git", :tag => s.version.to_s }
   s.source_files  = "VaingloryAPI/**/*.{h,m,swift}"
   s.pod_target_xcconfig = { 'SWIFT_VERSION' => '3' }
   s.ios.deployment_target = "10.0"
