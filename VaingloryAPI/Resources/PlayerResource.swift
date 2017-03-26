@@ -10,10 +10,10 @@ import Foundation
 import Mapper
 import Treasure
 
-struct PlayerResource: Resource {
+public struct PlayerResource: Resource {
     
-    let id: String
-    let type: String
+    public let id: String
+    public let type: String
     
     let shardId: String?
     let titleId: String?
@@ -31,7 +31,7 @@ struct PlayerResource: Resource {
     
     //var shard: Shard?
 
-    init(map: Mapper) throws {
+    public init(map: Mapper) throws {
         id = try map.from(Key.id)
         type = try map.from(Key.type)
         

@@ -19,12 +19,11 @@ Request a [Vainglory API key](https://developer.vainglorygame.com)
 ```swift
 import VaingloryAPI
 
-let vaingloryAPI = VaingloryAPIClient(
-                dataCenter: .dc01,
-                shard: .eu,
-                apiKey: "YOUR_VAINGLORY_API_KEY")
+let vaingloryAPI = VaingloryAPIClient(apiKey: "YOUR_VAINGLORY_API_KEY")
             
-vaingloryAPI.getPlayer(withId: "b7ce178c-bd4b-11e4-8883-06d90c28bf1a")
+vaingloryAPI.getPlayer(withId: "b7ce178c-bd4b-11e4-8883-06d90c28bf1a", shard: .eu) { player, error in
+    print(player)
+}
 ```
 
 ## Features:

@@ -12,10 +12,6 @@ import ObjectMapper
 import Foundation
 import Treasure
 
-public enum DataCenter: String {
-    case dc01
-}
-
 public enum Shard: String {
     case na
     case eu
@@ -24,31 +20,38 @@ public enum Shard: String {
     case sg
 }
 
-public enum BackendError: Error {
-    case network(error: Error)
-    case dataSerialization(error: Error)
-    case jsonSerialization(error: Error)
-    case xmlSerialization(error: Error)
-    case objectSerialization(reason: String)
-}
-
-public enum Entities: String {
-    case unknown
-    case player
-    case participant
-    case roster
-    case match
-}
-
 public class VaingloryAPIClient: NSObject {
     
-    
-    
-    fileprivate let baseUrl: URL
+    fileprivate enum Router: URLConvertible {
+        case player(id: String, shard: Shard)
+        case players(shard: Shard)
+        case match(id: String, shard: Shard)
+        case matches(shard: Shard)
+        
+        static let baseURLString = "https://api.dc01.gamelockerapp.com"
+        
+        var path: String {
+            switch self {
+            case .player(let id, let shard):
+                return "/shards/\(shard)/players/\(id)"
+            case .players(let shard):
+                return "/shards/\(shard)/players"
+            case .match(let id, let shard):
+                return "/shards/\(shard)/matches/\(id)"
+            case .matches(let shard):
+                return "/shards/\(shard)/matches"
+            }
+        }
+        
+        func asURL() throws -> URL {
+            let baseUrl = try Router.baseURLString.asURL()
+            return URL(string: path, relativeTo: baseUrl)!
+        }
+    }
+
     fileprivate let headers: HTTPHeaders
     
-    public init(dataCenter: DataCenter, shard: Shard, apiKey: String) {
-        baseUrl = URL(string: "https://api.\(dataCenter).gamelockerapp.com/shards/\(shard)/")!
+    public init(apiKey: String) {
         headers = [
             "Authorization": "Bearer \(apiKey)",
             "X-TITLE-ID": "semc-vainglory",
@@ -60,73 +63,67 @@ public class VaingloryAPIClient: NSObject {
 }
 
 public extension VaingloryAPIClient {
-    func getPlayer(withId id: String) {
-        let endpointUrl = URL(string: "players/\(id)", relativeTo: baseUrl)!
-        request(endpointUrl).responseJSON { response in
+    func getPlayer(withId id: String, shard: Shard, callback: @escaping (PlayerResource?, Error?) -> Void) {
+        request(Router.player(id: id, shard: shard)).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let player: PlayerResource? = Treasure(json: json).map()
-                print(player)
+                callback(player, nil)
             }
         }
     }
     
-    func getPlayer(withName name: String) {
-        let endpointUrl = URL(string: "players", relativeTo: baseUrl)!
+    func getPlayer(withName name: String, shard: Shard, callback: @escaping (PlayerResource?, Error?) -> Void) {
         let parameters = [
             "filter": ["playerNames": name]
         ]
-        request(endpointUrl, parameters: parameters).responseJSON { response in
+        request(Router.players(shard: shard), parameters: parameters).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let players: [PlayerResource]? = Treasure(json: json).map()
-                let player = players?.first
-                print(player)
+                callback(players?.first, nil)
             }
         }
     }
     
-    func getPlayers(withNames names: String ...) {
-        let endpointUrl = URL(string: "players", relativeTo: baseUrl)!
+    func getPlayers(withNames names: [String], shard: Shard, callback: @escaping ([PlayerResource]?, Error?) -> Void) {
         let parameters = [
             "filter": ["playerNames": names.joined(separator: ",")]
         ]
-        request(endpointUrl, parameters: parameters).responseJSON { response in
+        request(Router.players(shard: shard), parameters: parameters).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let players: [PlayerResource]? = Treasure(json: json).map()
-                print(players)
+                callback(players, nil)
             }
         }
-
     }
     
-    func getMatch(withId id: String) {
-        let endpointUrl = URL(string: "matches/\(id)", relativeTo: baseUrl)!
-        request(endpointUrl).responseJSON { response in
+    func getMatch(withId id: String, shard: Shard, callback: @escaping (MatchResource?, Error?) -> Void) {
+        request(Router.match(id: id, shard: shard)).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let match: MatchResource? = Treasure(json: json).map()
-                print(match)
+                callback(match, nil)
             }
         }
     }
     
-    func getMatches() {
-        let endpointUrl = URL(string: "matches", relativeTo: baseUrl)!
+    func getMatches(shard: Shard, callback: @escaping ([MatchResource]?, Error?) -> Void) {
         let parameters: [String : Any] = [
             "sort": "createdAt",
             "page": ["limit": 2],
-            "filter": ["createdAt-start": "2017-02-27T13:25:30Z",
-                       "playerNames": "Salavert"]
+            "filter": [
+                "createdAt-start": "2017-03-10T13:25:30Z",
+                "playerNames": "Salavert"]
         ]
-        request(endpointUrl, parameters: parameters).responseJSON { response in
+        request(Router.matches(shard: shard), parameters: parameters).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let matches: [MatchResource]? = Treasure(json: json).map()
-                print(matches)
+                callback(matches, nil)
             }
         }
     }
 }
 
 private extension VaingloryAPIClient {
-    func request(_ url: URL, parameters: Parameters? = [:]) -> DataRequest {
+    func request(_ url: URLConvertible, parameters: Parameters? = [:]) -> DataRequest {
         return Alamofire.request(url,
                                  method: .get,
                                  parameters: parameters,

@@ -10,10 +10,11 @@ import Foundation
 import Mapper
 import Treasure
 
-struct MatchResource: Resource {
+public struct MatchResource: Resource {
 
-    let id: String
-    let type: String
+    public let id: String
+    public let type: String
+    
     let patchVersion: String?
     let shardId: String?
     let titleId: String?
@@ -24,9 +25,9 @@ struct MatchResource: Resource {
     let endGameReason: String?
     
     let rosters: [RosterResource]?
-    //rounds
+    let asset: [AssetResource]?
     
-    init(map: Mapper) throws {
+    public init(map: Mapper) throws {
         id = try map.from(Key.id)
         type = try map.from(Key.type)
         
@@ -42,5 +43,8 @@ struct MatchResource: Resource {
         
         let rostersRelationship: ToManyRelationship? = try? map.from(Key.relationships("rosters"))
         rosters = try? map.from(rostersRelationship)
+
+        let assetRelationship: ToManyRelationship? = try? map.from(Key.relationships("assets"))
+        asset = try? map.from(assetRelationship)
     }
 }
