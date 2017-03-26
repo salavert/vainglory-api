@@ -10,6 +10,7 @@ import Alamofire
 import AlamofireObjectMapper
 import ObjectMapper
 import Foundation
+import Treasure
 
 public enum DataCenter: String {
     case dc01
@@ -61,9 +62,11 @@ public class VaingloryAPIClient: NSObject {
 public extension VaingloryAPIClient {
     func getPlayer(withId id: String) {
         let endpointUrl = URL(string: "players/\(id)", relativeTo: baseUrl)!
-        
-        request(endpointUrl).responseObject(keyPath: "data") { (response: DataResponse<PlayerResponseModel>) in
-            print(response.result.value?.description)
+        request(endpointUrl).responseJSON { response in
+            if let json = response.result.value as? [String: Any] {
+                let player: PlayerResource? = Treasure(json: json).map()
+                print(player)
+            }
         }
     }
     
@@ -72,9 +75,11 @@ public extension VaingloryAPIClient {
         let parameters = [
             "filter": ["playerNames": name]
         ]
-        request(endpointUrl).responseArray(keyPath: "data") { (response: DataResponse<[PlayerResponseModel]>) in
-            if let player = response.result.value?.first {
-                print(player.description)
+        request(endpointUrl, parameters: parameters).responseJSON { response in
+            if let json = response.result.value as? [String: Any] {
+                let players: [PlayerResource]? = Treasure(json: json).map()
+                let player = players?.first
+                print(player)
             }
         }
     }
@@ -84,26 +89,21 @@ public extension VaingloryAPIClient {
         let parameters = [
             "filter": ["playerNames": names.joined(separator: ",")]
         ]
-        request(endpointUrl).responseArray(keyPath: "data") { (response: DataResponse<[PlayerResponseModel]>) in
-            if let players = response.result.value {
-                for player in players {
-                    print(player.description)
-                }
+        request(endpointUrl, parameters: parameters).responseJSON { response in
+            if let json = response.result.value as? [String: Any] {
+                let players: [PlayerResource]? = Treasure(json: json).map()
+                print(players)
             }
         }
+
     }
     
     func getMatch(withId id: String) {
         let endpointUrl = URL(string: "matches/\(id)", relativeTo: baseUrl)!
-//        request(endpointUrl).responseObject { [weak self] (response: DataResponse<MatchResponseModel>) in
-//            if let match = response.result.value {
-//                print("MATCH \(match.description)")
-//            }
-//        }
-        request(endpointUrl).responseJSON { [weak self] (response: DataResponse<Any>) in
-            if let json = response.result.value {
-                
-                print("MATCH \(json)")
+        request(endpointUrl).responseJSON { response in
+            if let json = response.result.value as? [String: Any] {
+                let match: MatchResource? = Treasure(json: json).map()
+                print(match)
             }
         }
     }
@@ -116,9 +116,10 @@ public extension VaingloryAPIClient {
             "filter": ["createdAt-start": "2017-02-27T13:25:30Z",
                        "playerNames": "Salavert"]
         ]
-        request(endpointUrl, parameters: parameters).responseJSON { [weak self] (response: DataResponse<Any>) in
-            if let matches = response.result.value {
-//                print("MATCHES \(matches.count)")
+        request(endpointUrl, parameters: parameters).responseJSON { response in
+            if let json = response.result.value as? [String: Any] {
+                let matches: [MatchResource]? = Treasure(json: json).map()
+                print(matches)
             }
         }
     }
@@ -129,7 +130,7 @@ private extension VaingloryAPIClient {
         return Alamofire.request(url,
                                  method: .get,
                                  parameters: parameters,
-                                 encoding: JSONEncoding.default,
+                                 encoding: URLEncoding.queryString,
                                  headers: headers)
     }
 }
