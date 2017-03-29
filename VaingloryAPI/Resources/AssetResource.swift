@@ -15,12 +15,12 @@ public struct AssetResource: Resource {
     public let id: String
     public let type: String
     
-    let url: String?
-    let contentType: String?
-    let createdAt: String?
-    let description: String?
-    let filename: String?
-    let name: String?
+    public let url: String?
+    public let contentType: String?
+    public let createdAt: String?
+    public let description: String?
+    public let filename: String?
+    public let name: String?
     
     public init(map: Mapper) throws {
         id = try map.from(Key.id)

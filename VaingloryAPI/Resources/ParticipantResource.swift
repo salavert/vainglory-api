@@ -15,31 +15,31 @@ public struct ParticipantResource: Resource {
     public let id: String
     public let type: String
 
-    let actor: String?
-    let assists: Int?
-    let crystalMineCaptures: Int?
-    let deaths: Int?
-    let farm: Int?
-    let firstAfkTime: Bool
-    let goldMineCaptures: Int?
-    let itemGrants: [String: Any]?
-    let itemSells: [String: Any]?
-    let itemUses: [String: Any]?
-    let items: [String]?
-    let jungleKills: Int?
-    let karmaLevel: Int?
-    let kills: Int?
-    let krakenCaptures: Int?
-    let level: Int?
-    let minionKills: Int?
-    let nonJungleMinionKills: Int?
-    let skillTier: Int?
-    let skinKey: String?
-    let turretCaptures: Int?
-    let wentAfk: Bool?
-    let winner: Bool?
+    public let actor: String?
+    public let assists: Int?
+    public let crystalMineCaptures: Int?
+    public let deaths: Int?
+    public let farm: Int?
+    public let firstAfkTime: Bool
+    public let goldMineCaptures: Int?
+    public let itemGrants: [String: Any]?
+    public let itemSells: [String: Any]?
+    public let itemUses: [String: Any]?
+    public let items: [String]?
+    public let jungleKills: Int?
+    public let karmaLevel: Int?
+    public let kills: Int?
+    public let krakenCaptures: Int?
+    public let level: Int?
+    public let minionKills: Int?
+    public let nonJungleMinionKills: Int?
+    public let skillTier: Int?
+    public let skinKey: String?
+    public let turretCaptures: Int?
+    public let wentAfk: Bool?
+    public let winner: Bool?
     
-    let player: PlayerResource?
+    public let player: PlayerResource?
     
     public init(map: Mapper) throws {
         id = try map.from(Key.id)

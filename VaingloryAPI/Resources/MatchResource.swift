@@ -15,17 +15,17 @@ public struct MatchResource: Resource {
     public let id: String
     public let type: String
     
-    let patchVersion: String?
-    let shardId: String?
-    let titleId: String?
-    let gameMode: String?
-    let duration: Int?
-    let createdAt: String?
-    let queue: String?
-    let endGameReason: String?
+    public let patchVersion: String?
+    public let shardId: String?
+    public let titleId: String?
+    public let gameMode: String?
+    public let duration: Int?
+    public let createdAt: String?
+    public let queue: String?
+    public let endGameReason: String?
     
-    let rosters: [RosterResource]?
-    let asset: [AssetResource]?
+    public let rosters: [RosterResource]?
+    public let asset: [AssetResource]?
     
     public init(map: Mapper) throws {
         id = try map.from(Key.id)

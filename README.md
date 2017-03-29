@@ -16,6 +16,8 @@ pod 'VaingloryAPI', :git => 'https://github.com/salavert/vainglory-api.git'
 
 Request a [Vainglory API key](https://developer.vainglorygame.com)
 
+### Getting players
+
 ```swift
 import VaingloryAPI
 
@@ -30,6 +32,22 @@ vaingloryAPI.getPlayer(withId: "b7ce178c-bd4b-11e4-8883-06d90c28bf1a", shard: .e
 vaingloryAPI.getPlayer(withName: "Salavert", shard: .eu) { player, error in
     print(player)
 }
+```
+
+### Getting matches
+
+```swift
+// Retrieving match by Id
+vaingloryAPI.getMatch(withId: "c481c96a-03fd-11e7-8f17-0266696addef", shard: .eu) { match, error in
+    // Getting match rosters
+    print(match.rosters)
+    
+    // Getting participant of first rosters
+    print(match.rosters?.first?.participants)
+
+    // Getting first player of first rosters
+    print(match.rosters?.first?.participants?.first?.player)
+}
 
 // Retrieving matches based on player names
 let filters = RouterFilters()
@@ -42,8 +60,18 @@ vaingloryAPI.getMatches(shard: .eu, filters: filters) { matches, error in
 }
 ```
 
+### Telemetry
+
+```swift
+let url = "https://gl-prod-us-east-1.s3.amazonaws.com/assets/semc-vainglory/na/2017/03/17/00/43/b900c179-0aaa-11e7-bb12-0242ac110005-telemetry.json"
+vaingloryAPI.getTelemetry(url: url) { telemetryList, error in
+    print(telemetryList?.count)
+}
+```
+
 ## Features:
 
-* Retrieves Matches with its 2 rosters, 6 participants and players.
-* Retrieves a Match by id.
-* Retrieves a Player by id or name.
+* Player by id or name.
+* Match by id.
+* List of matches based on filters.
+* Telemetry

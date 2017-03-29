@@ -15,15 +15,15 @@ public struct RosterResource: Resource {
     public let id: String
     public let type: String
     
-    let acesEarned: Int?
-    let gold: Int?
-    let heroKills: Int?
-    let krakenCaptures: Int?
-    let side: String?
-    let turretKills: Int?
-    let turretsRemaining: Int?
+    public let acesEarned: Int?
+    public let gold: Int?
+    public let heroKills: Int?
+    public let krakenCaptures: Int?
+    public let side: String?
+    public let turretKills: Int?
+    public let turretsRemaining: Int?
 
-    let participants: [ParticipantResource]?
+    public let participants: [ParticipantResource]?
     
     public init(map: Mapper) throws {
         id = try map.from(Key.id)

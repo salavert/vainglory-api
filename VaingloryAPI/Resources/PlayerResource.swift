@@ -15,19 +15,19 @@ public struct PlayerResource: Resource {
     public let id: String
     public let type: String
     
-    let shardId: String?
-    let titleId: String?
-    let name: String?
-    let createdAt: String?
+    public let shardId: String?
+    public let titleId: String?
+    public let name: String?
+    public let createdAt: String?
     
-    let played: Int?
-    let playedRanked: Int?
-    let level: Int?
-    let xp: Int?
-    let lossStreak: Int?
-    let wins: Int?
-    let winStreak: Int?
-    let lifetimeGold: Float?
+    public let played: Int?
+    public let playedRanked: Int?
+    public let level: Int?
+    public let xp: Int?
+    public let lossStreak: Int?
+    public let wins: Int?
+    public let winStreak: Int?
+    public let lifetimeGold: Float?
     
     //var shard: Shard?
 

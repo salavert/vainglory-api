@@ -7,8 +7,8 @@
 //
 
 import Alamofire
-import ObjectMapper
 import Foundation
+import ObjectMapper
 import Treasure
 
 public enum Shard: String {
@@ -43,19 +43,30 @@ public enum VaingloryAPIError: Int {
 }
 
 public class VaingloryAPIClient: NSObject {
-    
-    fileprivate let headers: HTTPHeaders
+    fileprivate struct Constants {
+        static let titleId = "semc-vainglory"
+        static let accept = "application/vnd.api+json"
+        static let acceptEncoding = "gzip"
+    }
+    fileprivate let authHeaders: HTTPHeaders
+    fileprivate let anonHeaders: HTTPHeaders
     
     public init(apiKey: String) {
-        headers = [
+        authHeaders = [
             "Authorization": "Bearer \(apiKey)",
-            "X-TITLE-ID": "semc-vainglory",
-            "Content-Type": "application/vnd.api+json",
-            "Accept": "application/vnd.api+json",
-            "Accept-Encoding": "gzip"
+            "X-TITLE-ID": Constants.titleId,
+            "Content-Type": Constants.accept,
+            "Accept": Constants.accept,
+            "Accept-Encoding": Constants.acceptEncoding
+        ]
+        anonHeaders = [
+            "X-TITLE-ID": Constants.titleId,
+            "Accept": Constants.accept,
         ]
     }
 }
+
+// MARK: Player methods
 
 public extension VaingloryAPIClient {
     func getPlayer(withId id: String, shard: Shard, callback: @escaping (PlayerResource?, VaingloryAPIError?) -> Void) {
@@ -110,7 +121,11 @@ public extension VaingloryAPIClient {
             }
         }
     }
-    
+}
+
+// MARK: Match methods
+
+public extension VaingloryAPIClient {
     func getMatch(withId id: String, shard: Shard, callback: @escaping (MatchResource?, VaingloryAPIError?) -> Void) {
         let url = Router(for: .match(id: id), shard: shard)
 
@@ -146,13 +161,44 @@ public extension VaingloryAPIClient {
     }
 }
 
+// MARK: Telemetry methods
+
+public extension VaingloryAPIClient {
+    func getTelemetries(url: URLConvertible, callback: @escaping ([TelemetryResource]?, VaingloryAPIError?) -> Void) {
+        Alamofire.request(url,
+                          method: .get,
+                          parameters: nil,
+                          encoding: URLEncoding.default,
+                          headers: anonHeaders)
+            .responseJSON { response in
+                guard let json = response.result.value as? [Parameters] else {
+                    callback(nil, .invalidResponse)
+                    return
+                }
+                guard let telemetry = Mapper<TelemetryResource>().mapArray(JSONArray: json) else {
+                    callback(nil, .invalidResource)
+                    return
+                }
+                callback(telemetry, nil)
+        }
+    }
+    
+    func getTelemetries(resource: AssetResource, callback: @escaping ([TelemetryResource]?, VaingloryAPIError?) -> Void) {
+        guard let url = resource.url else {
+            callback(nil, .invalidResource)
+            return
+        }
+        getTelemetries(url: url, callback: callback)
+    }
+}
+
 private extension VaingloryAPIClient {
     func request(_ url: URLConvertible, parameters: Parameters? = [:], callback: @escaping (Parameters?, VaingloryAPIError?) -> Void) -> DataRequest {
         return Alamofire.request(url,
                                  method: .get,
                                  parameters: parameters,
                                  encoding: URLEncoding.queryString,
-                                 headers: headers)
+                                 headers: authHeaders)
             .responseJSON { [weak self] response in
                 guard let `self` = self else { return }
                 if let error = self.handleResponseError(response) {
