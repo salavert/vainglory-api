@@ -9,7 +9,7 @@ This API is under development, not production ready.
 ```ruby
 use_frameworks!
 
-pod 'VaingloryAPI', :git => 'https://github.com/salavert/vainglory-api.git'
+pod 'VaingloryAPI'
 ```
 
 ## Usage
