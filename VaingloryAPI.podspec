@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "VaingloryAPI"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "Api client for Vainglory game"
 
   s.description  = <<-DESC
@@ -18,5 +18,6 @@ This API is a swift implementation to obtain its data.
   s.ios.deployment_target = "10.0"
   
   s.dependency "Alamofire", "~> 4.4"
+  s.dependency "ObjectMapper", "~> 2.2"
   s.dependency "Treasure"
 end

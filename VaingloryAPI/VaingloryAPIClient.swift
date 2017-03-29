@@ -73,12 +73,12 @@ public extension VaingloryAPIClient {
         let url = Router(for: .player(id: id), shard: shard)
         
         request(url) { [weak self] parameters, error in
-            guard let `self` = self else { return }
+            guard let _ = self else { return }
             guard let parameters = parameters else {
                 callback(nil, error)
                 return
             }
-            if let player: PlayerResource? = Treasure(json: parameters).map() {
+            if let player: PlayerResource = Treasure(json: parameters).map() {
                 callback(player, nil)
             } else {
                 callback(nil, .invalidResource)
@@ -91,12 +91,12 @@ public extension VaingloryAPIClient {
         let url = Router(for: .players, shard: shard, filters: filters)
         
         request(url) { [weak self] parameters, error in
-            guard let `self` = self else { return }
+            guard let _ = self else { return }
             guard let parameters = parameters else {
                 callback(nil, error)
                 return
             }
-            if let players: [PlayerResource]? = Treasure(json: parameters).map(), let player = players?.first {
+            if let players: [PlayerResource] = Treasure(json: parameters).map(), let player = players.first {
                 callback(player, nil)
             } else {
                 callback(nil, .invalidResource)
@@ -109,12 +109,12 @@ public extension VaingloryAPIClient {
         let url = Router(for: .players, shard: shard, filters: filters)
         
         request(url) { [weak self] parameters, error in
-            guard let `self` = self else { return }
+            guard let _ = self else { return }
             guard let parameters = parameters else {
                 callback(nil, error)
                 return
             }
-            if let players: [PlayerResource]? = Treasure(json: parameters).map() {
+            if let players: [PlayerResource] = Treasure(json: parameters).map() {
                 callback(players, nil)
             } else {
                 callback(nil, .invalidResource)
@@ -130,12 +130,12 @@ public extension VaingloryAPIClient {
         let url = Router(for: .match(id: id), shard: shard)
 
         request(url) { [weak self] parameters, error in
-            guard let `self` = self else { return }
+            guard let _ = self else { return }
             guard let parameters = parameters else {
                 callback(nil, error)
                 return
             }
-            if let match: MatchResource? = Treasure(json: parameters).map() {
+            if let match: MatchResource = Treasure(json: parameters).map() {
                 callback(match, nil)
             } else {
                 callback(nil, .invalidResource)
@@ -147,12 +147,12 @@ public extension VaingloryAPIClient {
         let url = Router(for: .matches, shard: shard, filters: filters)
         
         request(url) { [weak self] parameters, error in
-            guard let `self` = self else { return }
+            guard let _ = self else { return }
             guard let parameters = parameters else {
                 callback(nil, error)
                 return
             }
-            if let matches: [MatchResource]? = Treasure(json: parameters).map() {
+            if let matches: [MatchResource] = Treasure(json: parameters).map() {
                 callback(matches, nil)
             } else {
                 callback(nil, .invalidResource)
@@ -193,12 +193,12 @@ public extension VaingloryAPIClient {
 }
 
 private extension VaingloryAPIClient {
-    func request(_ url: URLConvertible, parameters: Parameters? = [:], callback: @escaping (Parameters?, VaingloryAPIError?) -> Void) -> DataRequest {
-        return Alamofire.request(url,
-                                 method: .get,
-                                 parameters: parameters,
-                                 encoding: URLEncoding.queryString,
-                                 headers: authHeaders)
+    func request(_ url: URLConvertible, parameters: Parameters? = [:], callback: @escaping (Parameters?, VaingloryAPIError?) -> Void) {
+        Alamofire.request(url,
+                          method: .get,
+                          parameters: parameters,
+                          encoding: URLEncoding.queryString,
+                          headers: authHeaders)
             .responseJSON { [weak self] response in
                 guard let `self` = self else { return }
                 if let error = self.handleResponseError(response) {
@@ -214,7 +214,7 @@ private extension VaingloryAPIClient {
         guard response.result.isSuccess else {
             return .serviceUnavailable
         }
-        guard let value = response.result.value else {
+        guard let _ = response.result.value else {
             return .invalidResponse
         }
         guard let statusCode = response.response?.statusCode else {
