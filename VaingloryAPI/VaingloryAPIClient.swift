@@ -23,6 +23,25 @@ public enum DataCenter: String {
     case dc01
 }
 
+public enum VaingloryAPIError: Int {
+    case unknown = 0
+    case serviceDown = 1
+    case invalidResponse = 2
+    case invalidResource = 3
+    
+    case badRequest = 400
+    case unauthorized = 401
+    case forbidden = 403
+    case notFound = 404
+    case methodNotAllowed = 405
+    case notAcceptable = 406
+    case gone = 410
+    case teapot = 418
+    case tooManyRequests = 429
+    case internalServerError = 500
+    case serviceUnavailable = 503
+}
+
 public class VaingloryAPIClient: NSObject {
     
     fileprivate let headers: HTTPHeaders
@@ -39,70 +58,122 @@ public class VaingloryAPIClient: NSObject {
 }
 
 public extension VaingloryAPIClient {
-    func getPlayer(withId id: String, shard: Shard, callback: @escaping (PlayerResource?, Error?) -> Void) {
+    func getPlayer(withId id: String, shard: Shard, callback: @escaping (PlayerResource?, VaingloryAPIError?) -> Void) {
         let url = Router(for: .player(id: id), shard: shard)
         
-        request(url).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                let player: PlayerResource? = Treasure(json: json).map()
+        request(url) { [weak self] parameters, error in
+            guard let `self` = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let player: PlayerResource? = Treasure(json: parameters).map() {
                 callback(player, nil)
+            } else {
+                callback(nil, .invalidResource)
             }
         }
     }
     
-    func getPlayer(withName name: String, shard: Shard, callback: @escaping (PlayerResource?, Error?) -> Void) {
+    func getPlayer(withName name: String, shard: Shard, callback: @escaping (PlayerResource?, VaingloryAPIError?) -> Void) {
         let filters = RouterFilters().playerName(name)
         let url = Router(for: .players, shard: shard, filters: filters)
         
-        request(url).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                let players: [PlayerResource]? = Treasure(json: json).map()
-                callback(players?.first, nil)
+        request(url) { [weak self] parameters, error in
+            guard let `self` = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let players: [PlayerResource]? = Treasure(json: parameters).map(), let player = players?.first {
+                callback(player, nil)
+            } else {
+                callback(nil, .invalidResource)
             }
         }
     }
     
-    func getPlayers(withNames names: [String], shard: Shard, callback: @escaping ([PlayerResource]?, Error?) -> Void) {
+    func getPlayers(withNames names: [String], shard: Shard, callback: @escaping ([PlayerResource]?, VaingloryAPIError?) -> Void) {
         let filters = RouterFilters().playerNames(names)
         let url = Router(for: .players, shard: shard, filters: filters)
         
-        request(url).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                let players: [PlayerResource]? = Treasure(json: json).map()
+        request(url) { [weak self] parameters, error in
+            guard let `self` = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let players: [PlayerResource]? = Treasure(json: parameters).map() {
                 callback(players, nil)
+            } else {
+                callback(nil, .invalidResource)
             }
         }
     }
     
-    func getMatch(withId id: String, shard: Shard, callback: @escaping (MatchResource?, Error?) -> Void) {
+    func getMatch(withId id: String, shard: Shard, callback: @escaping (MatchResource?, VaingloryAPIError?) -> Void) {
         let url = Router(for: .match(id: id), shard: shard)
 
-        request(url).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                let match: MatchResource? = Treasure(json: json).map()
+        request(url) { [weak self] parameters, error in
+            guard let `self` = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let match: MatchResource? = Treasure(json: parameters).map() {
                 callback(match, nil)
+            } else {
+                callback(nil, .invalidResource)
             }
         }
     }
     
-    func getMatches(shard: Shard, filters: RouterFilters?, callback: @escaping ([MatchResource]?, Error?) -> Void) {
+    func getMatches(shard: Shard, filters: RouterFilters?, callback: @escaping ([MatchResource]?, VaingloryAPIError?) -> Void) {
         let url = Router(for: .matches, shard: shard, filters: filters)
         
-        request(url).responseJSON { response in
-            if let json = response.result.value as? [String: Any] {
-                let matches: [MatchResource]? = Treasure(json: json).map()
+        request(url) { [weak self] parameters, error in
+            guard let `self` = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let matches: [MatchResource]? = Treasure(json: parameters).map() {
                 callback(matches, nil)
+            } else {
+                callback(nil, .invalidResource)
             }
         }
     }
 }
 
 private extension VaingloryAPIClient {
-    func request(_ url: URLConvertible, parameters: Parameters? = [:]) -> DataRequest {
+    func request(_ url: URLConvertible, parameters: Parameters? = [:], callback: @escaping (Parameters?, VaingloryAPIError?) -> Void) -> DataRequest {
         return Alamofire.request(url,
                                  method: .get,
                                  parameters: parameters,
                                  encoding: URLEncoding.queryString,
                                  headers: headers)
+            .responseJSON { [weak self] response in
+                guard let `self` = self else { return }
+                if let error = self.handleResponseError(response) {
+                    callback(nil, error)
+                }
+                if let json = response.result.value as? Parameters {
+                    callback(json, nil)
+                }
+        }
+    }
+    
+    func handleResponseError(_ response: DataResponse<Any>) -> VaingloryAPIError? {
+        guard response.result.isSuccess else {
+            return .serviceUnavailable
+        }
+        guard let value = response.result.value else {
+            return .invalidResponse
+        }
+        guard let statusCode = response.response?.statusCode else {
+            return .unknown
+        }
+        return VaingloryAPIError(rawValue: statusCode) ?? nil
     }
 }
