@@ -1,6 +1,6 @@
 # Vainglory API in swift
-
-This API is under development, not production ready.
+[![CocoaPods](https://img.shields.io/cocoapods/v/VaingloryAPI.svg)](https://cocoapods.org/pods/VaingloryAPI) 
+[![Build Status](https://travis-ci.org/salavert/vainglory-api.svg?branch=master)](https://travis-ci.org/salavert/vainglory-api)
 
 ## Installation
 
