@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import AlamofireObjectMapper
 import ObjectMapper
 import Foundation
 import Treasure
@@ -20,35 +19,12 @@ public enum Shard: String {
     case sg
 }
 
+public enum DataCenter: String {
+    case dc01
+}
+
 public class VaingloryAPIClient: NSObject {
     
-    fileprivate enum Router: URLConvertible {
-        case player(id: String, shard: Shard)
-        case players(shard: Shard)
-        case match(id: String, shard: Shard)
-        case matches(shard: Shard)
-        
-        static let baseURLString = "https://api.dc01.gamelockerapp.com"
-        
-        var path: String {
-            switch self {
-            case .player(let id, let shard):
-                return "/shards/\(shard)/players/\(id)"
-            case .players(let shard):
-                return "/shards/\(shard)/players"
-            case .match(let id, let shard):
-                return "/shards/\(shard)/matches/\(id)"
-            case .matches(let shard):
-                return "/shards/\(shard)/matches"
-            }
-        }
-        
-        func asURL() throws -> URL {
-            let baseUrl = try Router.baseURLString.asURL()
-            return URL(string: path, relativeTo: baseUrl)!
-        }
-    }
-
     fileprivate let headers: HTTPHeaders
     
     public init(apiKey: String) {
@@ -64,7 +40,9 @@ public class VaingloryAPIClient: NSObject {
 
 public extension VaingloryAPIClient {
     func getPlayer(withId id: String, shard: Shard, callback: @escaping (PlayerResource?, Error?) -> Void) {
-        request(Router.player(id: id, shard: shard)).responseJSON { response in
+        let url = Router(for: .player(id: id), shard: shard)
+        
+        request(url).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let player: PlayerResource? = Treasure(json: json).map()
                 callback(player, nil)
@@ -73,10 +51,10 @@ public extension VaingloryAPIClient {
     }
     
     func getPlayer(withName name: String, shard: Shard, callback: @escaping (PlayerResource?, Error?) -> Void) {
-        let parameters = [
-            "filter": ["playerNames": name]
-        ]
-        request(Router.players(shard: shard), parameters: parameters).responseJSON { response in
+        let filters = RouterFilters().playerName(name)
+        let url = Router(for: .players, shard: shard, filters: filters)
+        
+        request(url).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let players: [PlayerResource]? = Treasure(json: json).map()
                 callback(players?.first, nil)
@@ -85,10 +63,10 @@ public extension VaingloryAPIClient {
     }
     
     func getPlayers(withNames names: [String], shard: Shard, callback: @escaping ([PlayerResource]?, Error?) -> Void) {
-        let parameters = [
-            "filter": ["playerNames": names.joined(separator: ",")]
-        ]
-        request(Router.players(shard: shard), parameters: parameters).responseJSON { response in
+        let filters = RouterFilters().playerNames(names)
+        let url = Router(for: .players, shard: shard, filters: filters)
+        
+        request(url).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let players: [PlayerResource]? = Treasure(json: json).map()
                 callback(players, nil)
@@ -97,7 +75,9 @@ public extension VaingloryAPIClient {
     }
     
     func getMatch(withId id: String, shard: Shard, callback: @escaping (MatchResource?, Error?) -> Void) {
-        request(Router.match(id: id, shard: shard)).responseJSON { response in
+        let url = Router(for: .match(id: id), shard: shard)
+
+        request(url).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let match: MatchResource? = Treasure(json: json).map()
                 callback(match, nil)
@@ -105,15 +85,10 @@ public extension VaingloryAPIClient {
         }
     }
     
-    func getMatches(shard: Shard, callback: @escaping ([MatchResource]?, Error?) -> Void) {
-        let parameters: [String : Any] = [
-            "sort": "createdAt",
-            "page": ["limit": 2],
-            "filter": [
-                "createdAt-start": "2017-03-10T13:25:30Z",
-                "playerNames": "Salavert"]
-        ]
-        request(Router.matches(shard: shard), parameters: parameters).responseJSON { response in
+    func getMatches(shard: Shard, filters: RouterFilters?, callback: @escaping ([MatchResource]?, Error?) -> Void) {
+        let url = Router(for: .matches, shard: shard, filters: filters)
+        
+        request(url).responseJSON { response in
             if let json = response.result.value as? [String: Any] {
                 let matches: [MatchResource]? = Treasure(json: json).map()
                 callback(matches, nil)
