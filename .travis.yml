@@ -10,7 +10,8 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
-  - xcodebuild clean build -project VaingloryAPI.xcodeproj -scheme VaingloryAPI -sdk iphonesimulator10.2 | xcpretty
-  - xcodebuild test -project VaingloryAPI.xcodeproj -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' -configuration Debug | xcpretty
-  - xcodebuild test -project VaingloryAPI.xcodeproj -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.2' -configuration Release | xcpretty
+  - xcodebuild -list
+  - xcodebuild clean build -project VaingloryAPI.xcodeproj -sdk iphonesimulator | xcpretty
+  - xcodebuild test -project VaingloryAPI.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -configuration Debug | xcpretty
+  - xcodebuild test -project VaingloryAPI.xcodeproj -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -configuration Release | xcpretty
   - pod lib lint
