@@ -1,6 +1,7 @@
 # Vainglory API in swift
 [![CocoaPods](https://img.shields.io/cocoapods/v/VaingloryAPI.svg)](https://cocoapods.org/pods/VaingloryAPI) 
 [![Build Status](https://travis-ci.org/salavert/vainglory-api.svg?branch=master)](https://travis-ci.org/salavert/vainglory-api)
+[![CocoaPods](https://img.shields.io/cocoapods/l/VaingloryAPI.svg)]()
 
 ## Installation
 
@@ -42,7 +43,7 @@ vaingloryAPI.getMatch(withId: "c481c96a-03fd-11e7-8f17-0266696addef", shard: .eu
     // Getting match rosters
     print(match.rosters)
     
-    // Getting participant of first rosters
+    // Getting participants of first roster
     print(match.rosters?.first?.participants)
 
     // Getting first player of first rosters
