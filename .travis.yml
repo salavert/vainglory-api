@@ -5,6 +5,7 @@ env:
   - LC_CTYPE=en_US.UTF-8
   - LANG=en_US.UTF-8
 before_install:
+  - rvm use system
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
 script:
   - set -o pipefail
@@ -12,7 +13,6 @@ script:
   - xcodebuild -showsdks
   - xcodebuild -list
   - pod install
-  - xcodebuild clean build -project VaingloryAPI.xcodeproj -scheme VaingloryAPI -sdk iphonesimulator | xcpretty
-  - xcodebuild test -project VaingloryAPI.xcodeproj -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -configuration Debug | xcpretty
-  - xcodebuild test -project VaingloryAPI.xcodeproj -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -configuration Release | xcpretty
+  - xcodebuild clean build -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator | xcpretty
+  - xcodebuild test -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' -configuration Debug | xcpretty
   - pod lib lint
