@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7E05AD981E87034500DFF991 /* VaingloryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E05AD8E1E87034400DFF991 /* VaingloryAPI.framework */; };
 		7E05AD9D1E87034500DFF991 /* VaingloryAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E05AD9C1E87034500DFF991 /* VaingloryAPITests.swift */; };
 		7E05AD9F1E87034500DFF991 /* VaingloryAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E05AD911E87034400DFF991 /* VaingloryAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7E88E78D1E97B05000E10928 /* SampleResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E88E78C1E97B05000E10928 /* SampleResource.swift */; };
@@ -19,7 +18,8 @@
 		7EC4A1251E8E9DFC00E7BCF7 /* TelemetryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11D1E8E9DFC00E7BCF7 /* TelemetryResource.swift */; };
 		7EC4A1261E8E9DFC00E7BCF7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11E1E8E9DFC00E7BCF7 /* Router.swift */; };
 		7EC4A1271E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11F1E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift */; };
-		7FC34A4A2DD6B4558E27D5FD /* Pods_VaingloryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDDE575FA11C01D043FE995 /* Pods_VaingloryAPI.framework */; };
+		C7864CCB8027D4F46CE9A168 /* Pods_VaingloryAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08D085DF6A69B269312A56BD /* Pods_VaingloryAPITests.framework */; };
+		D9A785598FCB80C3FB1E78B3 /* Pods_VaingloryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 549C4C21F6BC3A86E01CEFBD /* Pods_VaingloryAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +33,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3FDDE575FA11C01D043FE995 /* Pods_VaingloryAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VaingloryAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7E05AD8E1E87034400DFF991 /* VaingloryAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VaingloryAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08D085DF6A69B269312A56BD /* Pods_VaingloryAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VaingloryAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4B041A4B490ABC51EF44E173 /* Pods-VaingloryAPITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPITests/Pods-VaingloryAPITests.debug.xcconfig"; sourceTree = "<group>"; };
+		549C4C21F6BC3A86E01CEFBD /* Pods_VaingloryAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VaingloryAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E05AD911E87034400DFF991 /* VaingloryAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VaingloryAPI.h; sourceTree = "<group>"; };
 		7E05AD921E87034400DFF991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7E05AD971E87034500DFF991 /* VaingloryAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaingloryAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E05AD971E87034500DFF991 /* VaingloryAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = VaingloryAPITests.xctest; path = "/Users/jsalavert/worspace/personal/vainglory/vainglory-api/build/Debug-iphoneos/VaingloryAPITests.xctest"; sourceTree = "<absolute>"; };
 		7E05AD9C1E87034500DFF991 /* VaingloryAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaingloryAPITests.swift; sourceTree = "<group>"; };
 		7E05AD9E1E87034500DFF991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E76BB451E97D2BC00AA8D23 /* VaingloryAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = VaingloryAPI.framework; path = "/Users/jsalavert/worspace/personal/vainglory/vainglory-api/build/Debug-iphoneos/VaingloryAPI.framework"; sourceTree = "<absolute>"; };
 		7E88E78C1E97B05000E10928 /* SampleResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleResource.swift; sourceTree = "<group>"; };
 		7EC4A1181E8E9DFC00E7BCF7 /* AssetResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetResource.swift; sourceTree = "<group>"; };
 		7EC4A1191E8E9DFC00E7BCF7 /* MatchResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResource.swift; sourceTree = "<group>"; };
@@ -49,8 +51,9 @@
 		7EC4A11D1E8E9DFC00E7BCF7 /* TelemetryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelemetryResource.swift; sourceTree = "<group>"; };
 		7EC4A11E1E8E9DFC00E7BCF7 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		7EC4A11F1E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaingloryAPIClient.swift; sourceTree = "<group>"; };
-		86B3D53402AE929448B75AA6 /* Pods-VaingloryAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI.debug.xcconfig"; sourceTree = "<group>"; };
-		E13F4056A1089659008C5CD1 /* Pods-VaingloryAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI.release.xcconfig"; sourceTree = "<group>"; };
+		96CDF7E2C7551F777CDAC37F /* Pods-VaingloryAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI.release.xcconfig"; sourceTree = "<group>"; };
+		A7A978D48A2185D8435423E1 /* Pods-VaingloryAPITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPITests/Pods-VaingloryAPITests.release.xcconfig"; sourceTree = "<group>"; };
+		BE47F45F01F8BFD911984C92 /* Pods-VaingloryAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FC34A4A2DD6B4558E27D5FD /* Pods_VaingloryAPI.framework in Frameworks */,
+				D9A785598FCB80C3FB1E78B3 /* Pods_VaingloryAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,40 +69,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E05AD981E87034500DFF991 /* VaingloryAPI.framework in Frameworks */,
+				C7864CCB8027D4F46CE9A168 /* Pods_VaingloryAPITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1F7216F0EA2AB6D0AAFE0838 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				86B3D53402AE929448B75AA6 /* Pods-VaingloryAPI.debug.xcconfig */,
-				E13F4056A1089659008C5CD1 /* Pods-VaingloryAPI.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		7E05AD841E87034400DFF991 = {
 			isa = PBXGroup;
 			children = (
 				7E05AD901E87034400DFF991 /* VaingloryAPI */,
 				7E05AD9B1E87034500DFF991 /* VaingloryAPITests */,
-				7E05AD8F1E87034400DFF991 /* Products */,
-				1F7216F0EA2AB6D0AAFE0838 /* Pods */,
-				9D1CF4092CF8EFF284696608 /* Frameworks */,
+				A363FBF964D607A330F06EFA /* Pods */,
+				956DDCC7C77F3585D03E8124 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		7E05AD8F1E87034400DFF991 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				7E05AD8E1E87034400DFF991 /* VaingloryAPI.framework */,
-				7E05AD971E87034500DFF991 /* VaingloryAPITests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		7E05AD901E87034400DFF991 /* VaingloryAPI */ = {
@@ -137,12 +121,24 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		9D1CF4092CF8EFF284696608 /* Frameworks */ = {
+		956DDCC7C77F3585D03E8124 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3FDDE575FA11C01D043FE995 /* Pods_VaingloryAPI.framework */,
+				549C4C21F6BC3A86E01CEFBD /* Pods_VaingloryAPI.framework */,
+				08D085DF6A69B269312A56BD /* Pods_VaingloryAPITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A363FBF964D607A330F06EFA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE47F45F01F8BFD911984C92 /* Pods-VaingloryAPI.debug.xcconfig */,
+				96CDF7E2C7551F777CDAC37F /* Pods-VaingloryAPI.release.xcconfig */,
+				4B041A4B490ABC51EF44E173 /* Pods-VaingloryAPITests.debug.xcconfig */,
+				A7A978D48A2185D8435423E1 /* Pods-VaingloryAPITests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -176,16 +172,19 @@
 			);
 			name = VaingloryAPI;
 			productName = VaingloryAPI;
-			productReference = 7E05AD8E1E87034400DFF991 /* VaingloryAPI.framework */;
+			productReference = 7E76BB451E97D2BC00AA8D23 /* VaingloryAPI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7E05AD961E87034500DFF991 /* VaingloryAPITests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E05ADA51E87034500DFF991 /* Build configuration list for PBXNativeTarget "VaingloryAPITests" */;
 			buildPhases = (
+				4D032064B0A66DBB83C7F013 /* [CP] Check Pods Manifest.lock */,
 				7E05AD931E87034500DFF991 /* Sources */,
 				7E05AD941E87034500DFF991 /* Frameworks */,
 				7E05AD951E87034500DFF991 /* Resources */,
+				DD462C4D9E7814E388A029B4 /* [CP] Embed Pods Frameworks */,
+				D8E357A1A82F6A2574C36CA3 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -228,7 +227,7 @@
 				en,
 			);
 			mainGroup = 7E05AD841E87034400DFF991;
-			productRefGroup = 7E05AD8F1E87034400DFF991 /* Products */;
+			productRefGroup = 7E05AD841E87034400DFF991;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -269,6 +268,51 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4D032064B0A66DBB83C7F013 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		D8E357A1A82F6A2574C36CA3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VaingloryAPITests/Pods-VaingloryAPITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DD462C4D9E7814E388A029B4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VaingloryAPITests/Pods-VaingloryAPITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FF47A0BB1964E3DC10280021 /* [CP] Copy Pods Resources */ = {
@@ -425,7 +469,7 @@
 		};
 		7E05ADA31E87034500DFF991 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 86B3D53402AE929448B75AA6 /* Pods-VaingloryAPI.debug.xcconfig */;
+			baseConfigurationReference = BE47F45F01F8BFD911984C92 /* Pods-VaingloryAPI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -447,7 +491,7 @@
 		};
 		7E05ADA41E87034500DFF991 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E13F4056A1089659008C5CD1 /* Pods-VaingloryAPI.release.xcconfig */;
+			baseConfigurationReference = 96CDF7E2C7551F777CDAC37F /* Pods-VaingloryAPI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
@@ -468,6 +512,7 @@
 		};
 		7E05ADA61E87034500DFF991 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4B041A4B490ABC51EF44E173 /* Pods-VaingloryAPITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 7M82CTWQ5L;
@@ -481,6 +526,7 @@
 		};
 		7E05ADA71E87034500DFF991 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A7A978D48A2185D8435423E1 /* Pods-VaingloryAPITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 7M82CTWQ5L;

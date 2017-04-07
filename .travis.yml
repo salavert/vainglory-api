@@ -1,14 +1,15 @@
-group: edge
 language: objective-c
 osx_image: xcode8.3
+xcode_workspace: VaingloryAPI.xcworkspace
+xcode_scheme: VaingloryAPI
+xcode_sdk: iphonesimulator10.3
 before_install:
   - gem install xcpretty
   - gem install cocoapods -v '1.2.0' --no-rdoc --no-ri --no-document --quiet
+  - brew update
+  - brew outdated xctool || brew upgrade xctool
 script:
   - set -o pipefail
-  - xcodebuild -version
-  - xcodebuild -showsdks
-  - xcodebuild -list
-  - xcodebuild -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator clean build | xcpretty
-  #- travis_retry xcodebuild clean test -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator -destination "name=iPhone SE" | xcpretty
+  - xctool ONLY_ACTIVE_ARCH=NO
+  - xctool test ONLY_ACTIVE_ARCH=NO
   - pod lib lint VaingloryAPI.podspec
