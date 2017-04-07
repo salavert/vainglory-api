@@ -7,57 +7,114 @@
 
 #### With [CocoaPods](http://cocoapods.org/)
 
+Open terminal and go to your project root folder, create a Podfile as follows
+
+```bash
+pod init
+vi Podfile
+```
+
+Add pod to target, for example:
+
 ```ruby
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
 use_frameworks!
 
-pod 'VaingloryAPI'
+target 'MYPROJECT' do
+    pod 'VaingloryAPI'
+end
+```
+
+Now install it and open generated workspace
+
+```bash
+pod install
+open MYPROJECT.xcworkspace
 ```
 
 ## Usage
 
-Request a [Vainglory API key](https://developer.vainglorygame.com)
-
-### Getting players
+Request a [Vainglory API key](https://developer.vainglorygame.com) and pass it to VainggloryAPI client
 
 ```swift
 import VaingloryAPI
 
 let vaingloryAPI = VaingloryAPIClient(apiKey: "YOUR_VAINGLORY_API_KEY")
+```
 
-// Retrieving a player by Id
+## Getting players
+
+### Player by id
+
+```swift
 vaingloryAPI.getPlayer(withId: "b7ce178c-bd4b-11e4-8883-06d90c28bf1a", shard: .eu) { player, error in
-    print(player)
-}
-
-// Retrieving a player by name
-vaingloryAPI.getPlayer(withName: "Salavert", shard: .eu) { player, error in
-    print(player)
+    if let player = player {
+        print("[VaingloryAPI] \(player)")
+    } else if let error = error {
+        print("[VaingloryAPI] \(error)")
+    }
 }
 ```
 
-### Getting matches
+### Player by name
 
 ```swift
-// Retrieving match by Id
-vaingloryAPI.getMatch(withId: "c481c96a-03fd-11e7-8f17-0266696addef", shard: .eu) { match, error in
-    // Getting match rosters
-    print(match.rosters)
-    
-    // Getting participants of first roster
-    print(match.rosters?.first?.participants)
-
-    // Getting first player of first rosters
-    print(match.rosters?.first?.participants?.first?.player)
+vaingloryAPI.getPlayer(withName: "Salavert", shard: .eu) { player, error in
+    if let player = player {
+        print("[VaingloryAPI] \(player)")
+    } else if let error = error {
+        print("[VaingloryAPI] \(error)")
+    }
 }
+```
 
-// Retrieving matches based on player names
+### Players by name
+
+```swift
+vaingloryAPI.getPlayers(withNames: ["Salavert", "Facil"], shard: .eu) { players, error in
+    if let players = players {
+        for player in players {
+            print("[VaingloryAPI] \(player)")
+        }
+    } else if let error = error {
+        print("[VaingloryAPI] \(error)")
+    }
+}
+```
+
+## Getting matches
+
+###  Match by Id
+
+```swift
+vaingloryAPI.getMatch(withId: "c481c96a-03fd-11e7-8f17-0266696addef", shard: .eu) { match, error in
+    if let match = match {
+        print("[VaingloryAPI] \(match)")
+        // match.rosters
+        // match.rosters?.first?.participants
+        // match.rosters?.first?.participants?.first?.player
+    } else if let error = error {
+        print(error)
+    }
+}
+```
+
+###  Match by player name
+
+```swift
 let filters = RouterFilters()
-    .playerNames(["Salavert", "PlayerName2"])
-    .createdAtStart("2017-01-20T11:47:42Z")
-    .limit(10)
-        
+    .playerName("Salavert")
+    .limit(5)
+                
 vaingloryAPI.getMatches(shard: .eu, filters: filters) { matches, error in
-    print(matches)
+    if let matches = matches {
+        for match in matches {
+            print("[VaingloryAPI] \(match)")
+        }
+    } else if let error = error {
+        print("[VaingloryAPI] \(error)")
+    }
 }
 ```
 
