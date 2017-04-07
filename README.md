@@ -61,6 +61,43 @@ vaingloryAPI.getMatches(shard: .eu, filters: filters) { matches, error in
 }
 ```
 
+### Samples
+
+A sample contains a collection of random matches
+
+Retrieving matches of latest available sample
+```swift
+vaingloryAPI.getSampleMatches(shard: .na) { matches, error in
+    if let matches = matches {
+        print(matches)
+    } else if let error = error {
+        print(error)
+    }
+}
+```
+
+If you prefer to do it manually and have feedback of download progress
+
+```swift
+let filters = RouterFilters().limit(1)
+        
+vaingloryAPI.getSamples(shard: .na, filters: filters) { samples, error in
+    if let samples = samples {
+        samples.first?.getMatches(
+            completionHandler: { matches in
+                if let matches = matches {
+                    print("Matches count: \(matches.count)")
+                }
+        },
+            progressHandler: { progress in
+                print("Download Progress: \(progress.fractionCompleted)")
+        })
+    } else if let error = error {
+        print(error)
+    }
+}
+```
+
 ### Telemetry
 
 ```swift

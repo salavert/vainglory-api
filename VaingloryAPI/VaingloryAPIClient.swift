@@ -159,6 +159,43 @@ public extension VaingloryAPIClient {
             }
         }
     }
+    
+    func getSampleMatches(shard: Shard, callback: @escaping ([MatchResource]?, VaingloryAPIError?) -> Void) {
+        let filters = RouterFilters().limit(1)
+        let url = Router(for: .samples, shard: shard, filters: filters)
+        
+        request(url) { [weak self] parameters, error in
+            guard let _ = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let samples: [SampleResource] = Treasure(json: parameters).map() {
+                samples.first?.getMatches(completionHandler: { matches in
+                    callback(matches, nil)
+                })
+            } else {
+                callback(nil, .invalidResource)
+            }
+        }
+    }
+    
+    func getSamples(shard: Shard, filters: RouterFilters?, callback: @escaping ([SampleResource]?, VaingloryAPIError?) -> Void) {
+        let url = Router(for: .samples, shard: shard, filters: filters)
+        
+        request(url) { [weak self] parameters, error in
+            guard let _ = self else { return }
+            guard let parameters = parameters else {
+                callback(nil, error)
+                return
+            }
+            if let samples: [SampleResource] = Treasure(json: parameters).map() {
+                callback(samples, nil)
+            } else {
+                callback(nil, .invalidResource)
+            }
+        }
+    }
 }
 
 // MARK: Telemetry methods

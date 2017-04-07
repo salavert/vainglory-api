@@ -14,6 +14,7 @@ public enum ResourceType {
     case players
     case match(id: String)
     case matches
+    case samples
     
     var path: String {
         switch self {
@@ -25,6 +26,8 @@ public enum ResourceType {
             return "matches/\(id)"
         case .matches:
             return "matches"
+        case .samples:
+            return "samples"
         }
     }
 }

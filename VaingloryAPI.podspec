@@ -20,4 +20,5 @@ This API is a swift implementation to obtain its data.
   s.dependency "Alamofire", "~> 4.4"
   s.dependency "ObjectMapper", "~> 2.2"
   s.dependency "Treasure"
+  s.dependency "Zip", "~> 0.7"
 end

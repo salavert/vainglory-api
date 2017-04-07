@@ -10,6 +10,16 @@
 		7E05AD981E87034500DFF991 /* VaingloryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E05AD8E1E87034400DFF991 /* VaingloryAPI.framework */; };
 		7E05AD9D1E87034500DFF991 /* VaingloryAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E05AD9C1E87034500DFF991 /* VaingloryAPITests.swift */; };
 		7E05AD9F1E87034500DFF991 /* VaingloryAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E05AD911E87034400DFF991 /* VaingloryAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7E88E78D1E97B05000E10928 /* SampleResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E88E78C1E97B05000E10928 /* SampleResource.swift */; };
+		7EC4A1201E8E9DFC00E7BCF7 /* AssetResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A1181E8E9DFC00E7BCF7 /* AssetResource.swift */; };
+		7EC4A1211E8E9DFC00E7BCF7 /* MatchResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A1191E8E9DFC00E7BCF7 /* MatchResource.swift */; };
+		7EC4A1221E8E9DFC00E7BCF7 /* ParticipantResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11A1E8E9DFC00E7BCF7 /* ParticipantResource.swift */; };
+		7EC4A1231E8E9DFC00E7BCF7 /* PlayerResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11B1E8E9DFC00E7BCF7 /* PlayerResource.swift */; };
+		7EC4A1241E8E9DFC00E7BCF7 /* RosterResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11C1E8E9DFC00E7BCF7 /* RosterResource.swift */; };
+		7EC4A1251E8E9DFC00E7BCF7 /* TelemetryResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11D1E8E9DFC00E7BCF7 /* TelemetryResource.swift */; };
+		7EC4A1261E8E9DFC00E7BCF7 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11E1E8E9DFC00E7BCF7 /* Router.swift */; };
+		7EC4A1271E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC4A11F1E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift */; };
+		7FC34A4A2DD6B4558E27D5FD /* Pods_VaingloryAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FDDE575FA11C01D043FE995 /* Pods_VaingloryAPI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +33,24 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3FDDE575FA11C01D043FE995 /* Pods_VaingloryAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VaingloryAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E05AD8E1E87034400DFF991 /* VaingloryAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VaingloryAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E05AD911E87034400DFF991 /* VaingloryAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VaingloryAPI.h; sourceTree = "<group>"; };
 		7E05AD921E87034400DFF991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E05AD971E87034500DFF991 /* VaingloryAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VaingloryAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E05AD9C1E87034500DFF991 /* VaingloryAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VaingloryAPITests.swift; sourceTree = "<group>"; };
 		7E05AD9E1E87034500DFF991 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E88E78C1E97B05000E10928 /* SampleResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleResource.swift; sourceTree = "<group>"; };
+		7EC4A1181E8E9DFC00E7BCF7 /* AssetResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetResource.swift; sourceTree = "<group>"; };
+		7EC4A1191E8E9DFC00E7BCF7 /* MatchResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MatchResource.swift; sourceTree = "<group>"; };
+		7EC4A11A1E8E9DFC00E7BCF7 /* ParticipantResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParticipantResource.swift; sourceTree = "<group>"; };
+		7EC4A11B1E8E9DFC00E7BCF7 /* PlayerResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerResource.swift; sourceTree = "<group>"; };
+		7EC4A11C1E8E9DFC00E7BCF7 /* RosterResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RosterResource.swift; sourceTree = "<group>"; };
+		7EC4A11D1E8E9DFC00E7BCF7 /* TelemetryResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TelemetryResource.swift; sourceTree = "<group>"; };
+		7EC4A11E1E8E9DFC00E7BCF7 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		7EC4A11F1E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VaingloryAPIClient.swift; sourceTree = "<group>"; };
+		86B3D53402AE929448B75AA6 /* Pods-VaingloryAPI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI.debug.xcconfig"; sourceTree = "<group>"; };
+		E13F4056A1089659008C5CD1 /* Pods-VaingloryAPI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaingloryAPI.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -36,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FC34A4A2DD6B4558E27D5FD /* Pods_VaingloryAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,12 +73,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F7216F0EA2AB6D0AAFE0838 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				86B3D53402AE929448B75AA6 /* Pods-VaingloryAPI.debug.xcconfig */,
+				E13F4056A1089659008C5CD1 /* Pods-VaingloryAPI.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		7E05AD841E87034400DFF991 = {
 			isa = PBXGroup;
 			children = (
 				7E05AD901E87034400DFF991 /* VaingloryAPI */,
 				7E05AD9B1E87034500DFF991 /* VaingloryAPITests */,
 				7E05AD8F1E87034400DFF991 /* Products */,
+				1F7216F0EA2AB6D0AAFE0838 /* Pods */,
+				9D1CF4092CF8EFF284696608 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -71,6 +105,9 @@
 		7E05AD901E87034400DFF991 /* VaingloryAPI */ = {
 			isa = PBXGroup;
 			children = (
+				7EC4A1171E8E9DFC00E7BCF7 /* Resources */,
+				7EC4A11E1E8E9DFC00E7BCF7 /* Router.swift */,
+				7EC4A11F1E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift */,
 				7E05AD911E87034400DFF991 /* VaingloryAPI.h */,
 				7E05AD921E87034400DFF991 /* Info.plist */,
 			);
@@ -84,6 +121,28 @@
 				7E05AD9E1E87034500DFF991 /* Info.plist */,
 			);
 			path = VaingloryAPITests;
+			sourceTree = "<group>";
+		};
+		7EC4A1171E8E9DFC00E7BCF7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7EC4A1181E8E9DFC00E7BCF7 /* AssetResource.swift */,
+				7EC4A1191E8E9DFC00E7BCF7 /* MatchResource.swift */,
+				7EC4A11A1E8E9DFC00E7BCF7 /* ParticipantResource.swift */,
+				7EC4A11B1E8E9DFC00E7BCF7 /* PlayerResource.swift */,
+				7EC4A11C1E8E9DFC00E7BCF7 /* RosterResource.swift */,
+				7E88E78C1E97B05000E10928 /* SampleResource.swift */,
+				7EC4A11D1E8E9DFC00E7BCF7 /* TelemetryResource.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9D1CF4092CF8EFF284696608 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FDDE575FA11C01D043FE995 /* Pods_VaingloryAPI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -104,10 +163,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7E05ADA21E87034500DFF991 /* Build configuration list for PBXNativeTarget "VaingloryAPI" */;
 			buildPhases = (
+				0709267F3A60A424C0169B96 /* [CP] Check Pods Manifest.lock */,
 				7E05AD891E87034400DFF991 /* Sources */,
 				7E05AD8A1E87034400DFF991 /* Frameworks */,
 				7E05AD8B1E87034400DFF991 /* Headers */,
 				7E05AD8C1E87034400DFF991 /* Resources */,
+				FF47A0BB1964E3DC10280021 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -149,6 +210,7 @@
 					7E05AD8D1E87034400DFF991 = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 7M82CTWQ5L;
+						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					7E05AD961E87034500DFF991 = {
@@ -193,11 +255,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0709267F3A60A424C0169B96 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FF47A0BB1964E3DC10280021 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VaingloryAPI/Pods-VaingloryAPI-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		7E05AD891E87034400DFF991 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EC4A1231E8E9DFC00E7BCF7 /* PlayerResource.swift in Sources */,
+				7EC4A1201E8E9DFC00E7BCF7 /* AssetResource.swift in Sources */,
+				7EC4A1221E8E9DFC00E7BCF7 /* ParticipantResource.swift in Sources */,
+				7EC4A1261E8E9DFC00E7BCF7 /* Router.swift in Sources */,
+				7EC4A1241E8E9DFC00E7BCF7 /* RosterResource.swift in Sources */,
+				7EC4A1211E8E9DFC00E7BCF7 /* MatchResource.swift in Sources */,
+				7EC4A1251E8E9DFC00E7BCF7 /* TelemetryResource.swift in Sources */,
+				7EC4A1271E8E9DFC00E7BCF7 /* VaingloryAPIClient.swift in Sources */,
+				7E88E78D1E97B05000E10928 /* SampleResource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,7 +425,9 @@
 		};
 		7E05ADA31E87034500DFF991 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 86B3D53402AE929448B75AA6 /* Pods-VaingloryAPI.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7M82CTWQ5L;
@@ -334,13 +440,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.josesalavert.VaingloryAPI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		7E05ADA41E87034500DFF991 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E13F4056A1089659008C5CD1 /* Pods-VaingloryAPI.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 7M82CTWQ5L;
@@ -360,6 +469,7 @@
 		7E05ADA61E87034500DFF991 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 7M82CTWQ5L;
 				INFOPLIST_FILE = VaingloryAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -372,6 +482,7 @@
 		7E05ADA71E87034500DFF991 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = 7M82CTWQ5L;
 				INFOPLIST_FILE = VaingloryAPITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -400,6 +511,7 @@
 				7E05ADA41E87034500DFF991 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		7E05ADA51E87034500DFF991 /* Build configuration list for PBXNativeTarget "VaingloryAPITests" */ = {
 			isa = XCConfigurationList;
@@ -408,6 +520,7 @@
 				7E05ADA71E87034500DFF991 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
