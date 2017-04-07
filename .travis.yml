@@ -1,7 +1,7 @@
+group: edge
 language: objective-c
 osx_image: xcode8.3
 before_install:
-  - rvm get stable --auto-dotfiles
   - gem install xcpretty
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
 script:
@@ -10,5 +10,5 @@ script:
   - xcodebuild -showsdks
   - xcodebuild -list
   - xcodebuild -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator clean build build-for-testing | xcpretty
-  - xcodebuild -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' ENABLE_TESTABILITY=YES test-without-building | xcpretty
+  - travis_retry xcodebuild -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' ENABLE_TESTABILITY=YES test-without-building | xcpretty
   - pod lib lint
