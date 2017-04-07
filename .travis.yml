@@ -1,9 +1,13 @@
 language: objective-c
 osx_image: xcode8.3
 before_install:
+  - gem install xcpretty
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet
 script:
   - set -o pipefail
-  - xcodebuild clean build -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator | xcpretty
-  - xcodebuild test -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' | xcpretty
+  - xcodebuild -version
+  - xcodebuild -showsdks
+  - xcodebuild -list
+  - xcodebuild -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator clean build | xcpretty
+  - xcodebuild -workspace VaingloryAPI.xcworkspace -scheme VaingloryAPI -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 7,OS=10.3' ENABLE_TESTABILITY=YES test | xcpretty
   - pod lib lint
